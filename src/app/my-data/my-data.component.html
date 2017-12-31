@@ -1,0 +1,470 @@
+<!--<div>-->
+  <!--<p><img [src] ="user?.profile"></p>-->
+  <!--<p>-->
+    <!--<LABEL>藝名: </LABEL>-->
+    <!--<li>{{user?.username}}</li>-->
+  <!--</p>-->
+
+  <!--<h3>我的天賦</h3>-->
+  <!--<li *ngFor="let my_talent of my_talents">-->
+    <!--<table>-->
+      <!--<tr>-->
+        <!--<td>標題</td>-->
+        <!--<td>{{my_talent?.title}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>敘述</td>-->
+        <!--<td>{{my_talent?.description}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>錢</td>-->
+        <!--<td>{{my_talent?.money}}</td>-->
+      <!--</tr>-->
+
+      <!--<tr>-->
+        <!--<button (click)="toEditMyTalent(my_talent._id)" class="btn-primary">編輯</button>-->
+      <!--</tr>-->
+    <!--</table>-->
+  <!--</li>-->
+
+  <!--<h3>我的評價</h3>-->
+  <!--<p>-->
+    <!--推: {{rates_count.type}}-->
+    <!--爽: {{rates_count.type1}}-->
+    <!--喔: {{rates_count.type2}}-->
+    <!--鬧: {{rates_count.type3}}-->
+    <!--幹: {{rates_count.type4}}-->
+  <!--</p>-->
+
+  <!--<li *ngFor="let my_rate of my_rates">-->
+    <!--<table>-->
+      <!--<tr>-->
+        <!--<td>大頭貼</td>-->
+        <!--<td><img [src]="my_rate?.user.profile"></td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>名字</td>-->
+        <!--<td>{{my_rate?.user.username}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>評論</td>-->
+        <!--<td>{{my_rate?.description}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>一字箴言</td>-->
+        <!--<td *ngIf="my_rate?.type == 0">推</td>-->
+        <!--<td *ngIf="my_rate?.type == 1">爽</td>-->
+        <!--<td *ngIf="my_rate?.type == 2">喔</td>-->
+        <!--<td *ngIf="my_rate?.type == 3">鬧</td>-->
+        <!--<td *ngIf="my_rate?.type == 4">幹</td>-->
+      <!--</tr>-->
+
+      <!--<tr>-->
+        <!--<button type="button" class="btn btn-primary" (click)="openModal(template)">檢舉留言</button>-->
+      <!--</tr>-->
+
+      <!--<ng-template #template>-->
+        <!--<div class="modal-header">-->
+          <!--檢舉-->
+          <!--<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">-->
+            <!--<span aria-hidden="true">&times;</span>-->
+          <!--</button>-->
+        <!--</div>-->
+
+        <!--<div class="modal-body">-->
+          <!--<input type="text"-->
+                 <!--name="report_content"-->
+                 <!--class="form-control"-->
+                 <!--placeholder="輸入檢舉內容"-->
+                 <!--[(ngModel)] = "report_content"-->
+          <!--&gt;-->
+          <!--<button type="button" (click)="report([my_rate._id], 2, [report_content])"></button>-->
+        <!--</div>-->
+      <!--</ng-template>-->
+
+    <!--</table>-->
+  <!--</li>-->
+
+  <!--<h3>我的購買紀錄</h3>-->
+  <!--<li *ngFor="let my_buy of my_buys">-->
+    <!--<table>-->
+      <!--<tr>-->
+        <!--<td>才能標題</td>-->
+        <!--<td></td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>數量</td>-->
+        <!--<td>{{my_buy.count}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>金錢</td>-->
+        <!--<td>{{my_buy.money}}</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td>評價狀態</td>-->
+        <!--<td *ngIf="my_buy.is_comment == 0">-->
+          <!--<button (click)="leaveComment(my_buy.talent_id, my_buy._id)">未評分</button>-->
+        <!--</td>-->
+        <!--<td *ngIf="my_buy.is_comment == 1">已評分</td>-->
+      <!--</tr>-->
+
+    <!--</table>-->
+  <!--</li>-->
+
+<!--</div>-->
+
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<head>
+  <title>Talent | Personal Page</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile_bg">
+      <div class="col-md-1"></div>
+      <div class="col-md-4 personal_info_col">
+        <div class="personal_info">
+          <img src={{user?.profile}} class="personal_info_header">
+          <!--<div class="personal_info_data">-->
+          <!--<p align="center"><b>裕翔呂</b></p>-->
+          <!--</div>-->
+          <b class="personal_info_data">{{user?.name}}</b>
+        </div>
+        <div class="ranking_info">
+          <div class="ranking_info_data">
+            <b>
+              <p>評價人數 : {{my_rates.length}}</p>
+              <p>評價率</p>
+              <p>能力值 :</p>
+            </b>
+          </div>
+
+          <div class="box">
+            <canvas id="chart-area" class="zone"
+                    baseChart
+                    [datasets]="chart_datas"
+                    [labels]="chart_labels"
+                    [chartType]="chart_type"
+                    [legend] = "chart_legend"
+                    >
+            </canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7 nice-wrapper content_info_col">
+        <div class="products_info">
+          <div class="products_sell" tabindex="1" (click)="setMy_Type(0)">
+            <p class="products_btn">我的天賦</p>
+          </div>
+          <div class="products_buy" tabindex="2" (click)="setMy_Type(1)">
+            <p class="products_btn">我的購買</p>
+          </div>
+          <div class="products_xx" tabindex="3" (click)="setMy_Type(2)">
+            <p class="products_btn">我的評論</p>
+          </div>
+          <div class="products_info_data">
+
+            <div *ngIf="my_type === 0">
+              <!--<div class="products_info_cards" *ngFor="let my_talent of my_talents">-->
+                <!--<div class="products_info_photo">-->
+                  <!--<img src="" class="product_photo">-->
+                <!--</div>-->
+                <!--<div class="products_info_text">-->
+                  <!--<p>標題: {{my_talent?.title}}</p>-->
+
+                  <!--<p>敘述: {{my_talent?.description}}</p>-->
+                  <!--<p>錢: {{my_talent?.money}}</p>-->
+
+                  <!--<button (click)="toEditMyTalent(my_talent._id)" class="btn-primary">編輯</button>-->
+                <!--</div>-->
+              <!--</div>-->
+              <div class="console">
+                <div class="cards"
+                     style="overflow: scroll"
+                     infinite-scroll
+                     (scrolled)="getUserMoreTalents()"
+                     [infiniteScrollDistance]="1"
+                     [infiniteScrollThrottle]="50"
+                     [scrollWindow]="false">
+
+                  <div class="card" *ngFor="let my_talent of my_talents">
+                    <div class="card-contents" (click)="toTalentPreview(my_talent._id)">
+                      <div class="overlay">
+                        <p class="card-text">{{my_talent.description}}</p>
+                      </div>
+                      <img class="image" [src]="safeUrl('http://1.34.63.239:3001/' + my_talent.main_image)" alt="Card image cap" *ngIf="my_talent.main_image!= null">
+                      <div class="info">
+                        <span class="title">{{my_talent.title}}</span>
+                        <span class="price">$ {{my_talent.money}}</span>
+                      </div>
+                      <!--<div class="left_card">-->
+                        <!--<img class="card-img" [src]="safeUrl('http://1.34.63.239:3001/' + my_talent.main_image)" alt="Card image cap" *ngIf="my_talent.main_image!= null">-->
+                      <!--</div>-->
+                      <!--<div class="right_card">-->
+                        <!--<div class="card-block">-->
+                          <!--<h4 class="card-title">{{my_talent.title}}</h4>-->
+                          <!--<p class="card-text">{{my_talent.description}}</p>-->
+                          <!--<p class="money card-text">$ {{my_talent.money}}</p>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div *ngIf="my_type === 1">
+              <!--<div class="products_info_cards" *ngFor="let my_buy of my_buys">-->
+                <!--<div class="overlay">-->
+                  <!--<p>數量: {{my_buy.count}}</p>-->
+                  <!---->
+                  <!--<p>評價狀態</p>-->
+                  <!--<p *ngIf="my_buy.type == 0">待確認</p>-->
+                  <!--<p *ngIf="my_buy.type == 1">-->
+                    <!--&lt;!&ndash;<button (click)="leaveComment(my_buy.talent_id[0]._id, my_buy._id)">未評分</button>&ndash;&gt;-->
+                    <!--<button (click)="openCommentModal(comment_template)">未評分</button>-->
+
+                    <!--<ng-template #comment_template>-->
+                      <!--<div class="modal-header">-->
+                        <!--<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">-->
+                          <!--<span aria-hidden="true">&times;</span>-->
+                        <!--</button>-->
+                        <!--<h2>針對這項服務，您覺得：</h2>-->
+                      <!--</div>-->
+
+                      <!--<div class="modal-body">-->
+                        <!--<div class="selections">-->
+                          <!--<label [class.selected]="r1.checked">-->
+                            <!--<input #r1 type="radio" name="r" value="4" (change)="setType(0)"> 推-->
+                          <!--</label>-->
+                          <!--<label [class.selected]="r2.checked">-->
+                            <!--<input #r2 type="radio" name="r" value="3" (change)="setType(1)"> 爽-->
+                          <!--</label>-->
+                          <!--<label [class.selected]="r3.checked">-->
+                            <!--<input #r3 type="radio" name="r" value="2" (change)="setType(2)"> 鬧-->
+                          <!--</label>-->
+                          <!--<label [class.selected]="r4.checked">-->
+                            <!--<input #r4 type="radio" name="r" value="1" (change)="setType(3)"> 喔-->
+                          <!--</label>-->
+                          <!--<label [class.selected]="r5.checked">-->
+                            <!--<input #r5 type="radio" name="r" value="0" (change)="setType(4)"> 幹-->
+                          <!--</label>-->
+
+                          <!--<textarea id="message" placeholder="其他想說的話..."-->
+                                    <!--[(ngModel)]="rate_description"-->
+                                    <!--value="{{rate_description}}">-->
+                          <!--</textarea>-->
+
+                        <!--</div>-->
+
+                        <!--<div class="submit-button" (click)="rateTalent(my_buy)">送出</div>-->
+                      <!--</div>-->
+
+                    <!--</ng-template>-->
+
+                  <!--</p>-->
+                  <!--<p *ngIf="my_buy.type == 2">已評分</p>-->
+                <!--</div>-->
+
+                <!--<div class="products_info_text">-->
+                  <!--<img [src]="safeUrl('http://1.34.63.239:3001/' + my_buy.talent_id[0].main_image)" style="width: 45px; height: 45px" *ngIf="my_buy.talent_id[0].main_image">-->
+                  <!--<p>標題: {{my_buy.talent_id[0].title}} </p>-->
+                  <!--<p>錢: {{my_buy.talent_id[0].money}}</p>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <div class="console">
+                <div class="cards"
+                     style="overflow: scroll"
+                     infinite-scroll
+                     (scrolled)="getUserMoreBuys()"
+                     [infiniteScrollDistance]="1"
+                     [infiniteScrollThrottle]="50"
+                     [scrollWindow]="false">
+
+                  <div class="card" *ngFor="let my_buy of my_buys">
+                    <div class="card-contents">
+                      <div class="overlay">
+                        <p>數量: {{my_buy.count}}</p>
+
+                        <p>評價狀態</p>
+                        <p *ngIf="my_buy.type == 0">待確認</p>
+                        <p *ngIf="my_buy.type == 1">
+                          <!--<button (click)="leaveComment(my_buy.talent_id[0]._id, my_buy._id)">未評分</button>-->
+                          <button (click)="openCommentModal(comment_template)">未評分</button>
+
+                          <ng-template #comment_template>
+                            <div class="modal-header">
+                              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h2>針對這項服務，您覺得：</h2>
+                            </div>
+
+                            <div class="modal-body">
+                              <div class="selections">
+                                <label [class.selected]="r1.checked">
+                                  <input #r1 type="radio" name="r" value="4" (change)="setType(0)"> 推
+                                </label>
+                                <label [class.selected]="r2.checked">
+                                  <input #r2 type="radio" name="r" value="3" (change)="setType(1)"> 爽
+                                </label>
+                                <label [class.selected]="r3.checked">
+                                  <input #r3 type="radio" name="r" value="2" (change)="setType(2)"> 鬧
+                                </label>
+                                <label [class.selected]="r4.checked">
+                                  <input #r4 type="radio" name="r" value="1" (change)="setType(3)"> 喔
+                                </label>
+                                <label [class.selected]="r5.checked">
+                                  <input #r5 type="radio" name="r" value="0" (change)="setType(4)"> 幹
+                                </label>
+
+                                <textarea class= "message" placeholder="其他想說的話..."
+                                          [(ngModel)]="rate_description"
+                                          value="{{rate_description}}">
+                                </textarea>
+
+                              </div>
+
+                              <div class="submit-button" (click)="rateTalent(my_buy)">送出</div>
+                            </div>
+
+                          </ng-template>
+
+                        </p>
+                        <p *ngIf="my_buy.type == 2">已評分</p>
+                      </div>
+
+                      <img class="image" [src]="safeUrl('http://1.34.63.239:3001/' + my_buy.talent_id[0].main_image)" alt="Card image cap" *ngIf="my_buy.talent_id[0].main_image!= null">
+                      <div class="info">
+                        <span class="title">{{my_buy.talent_id[0].title}}</span>
+                        <span class="price">$ {{my_buy.talent_id[0].money}}</span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div *ngIf="my_type === 2">
+                <!--<table>-->
+                  <!--<tr>-->
+                    <!--<td>大頭貼</td>-->
+                    <!--<td><img [src]="my_rate?.user.profile"></td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td>名字</td>-->
+                    <!--<td>{{my_rate?.user.username}}</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td>評論</td>-->
+                    <!--<td>{{my_rate?.description}}</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td>一字箴言</td>-->
+                    <!--<td *ngIf="my_rate?.type == 0">推</td>-->
+                    <!--<td *ngIf="my_rate?.type == 1">爽</td>-->
+                    <!--<td *ngIf="my_rate?.type == 2">喔</td>-->
+                    <!--<td *ngIf="my_rate?.type == 3">鬧</td>-->
+                    <!--<td *ngIf="my_rate?.type == 4">幹</td>-->
+                  <!--</tr>-->
+
+                  <!--<tr>-->
+                    <!--<button type="button" class="btn btn-primary" (click)="openModal(template)">檢舉留言</button>-->
+                  <!--</tr>-->
+
+                  <!--<ng-template #template>-->
+                    <!--<div class="modal-header">-->
+                      <!--檢舉-->
+                      <!--<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">-->
+                        <!--<span aria-hidden="true">&times;</span>-->
+                      <!--</button>-->
+                    <!--</div>-->
+
+                    <!--<div class="modal-body">-->
+                      <!--<input type="text"-->
+                             <!--name="report_content"-->
+                             <!--class="form-control"-->
+                             <!--placeholder="輸入檢舉內容"-->
+                             <!--[(ngModel)] = "report_content"-->
+                      <!--&gt;-->
+                      <!--<button type="button" (click)="report([my_rate._id], 2, [report_content])"></button>-->
+                    <!--</div>-->
+                  <!--</ng-template>-->
+
+                <!--</table>-->
+                <div class="w3-container"
+                     style="overflow: scroll"
+                     infinite-scroll
+                     (scrolled)="getUserMoreRates()"
+                     [infiniteScrollDistance]="1"
+                     [infiniteScrollThrottle]="50"
+                     [scrollWindow]="false">
+
+                  <div class="w3-card-4"
+                       style="width:100%; height: auto; margin:20px 0 0 0; background-color: #FFFFFF; min-height: 80px"
+                       *ngFor="let my_rate of my_rates"
+                  >
+                    <div class="w3-container">
+
+                      <div class="col-md-2">
+                        <img [src]="my_rate?.user.profile" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                             style="width: 60px; height: 60px; margin-top: 10px">
+                      </div>
+
+                      <div class="col-md-8">
+                        <p style="word-break: break-all">{{my_rate?.user.name}}</p>
+                        <p style="word-break:break-all">{{my_rate?.description}}</p>
+                      </div>
+
+                      <div class="comment-report" (click)="openModal(template)">檢舉</div>
+
+                      <ng-template #template>
+                        <div class="modal-header">
+                          檢舉留言
+                          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+
+                        <div class="modal-body">
+                          <input type="text"
+                                 name="report_content"
+                                 class="form-control"
+                                 placeholder="輸入檢舉內容"
+                                 [(ngModel)] = "report_content"
+                          >
+                          <button type="button" (click)="report(my_rate._id, 2, report_content)">檢舉</button>
+                        </div>
+
+                      </ng-template>
+
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1"></div>
+    </div>
+
+  </div>
+</body>
+
+</html>
+
+
+

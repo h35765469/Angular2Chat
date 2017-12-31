@@ -1,0 +1,131 @@
+<!--
+	Real time private chatting app using Angular 2, Nodejs, mongodb and Socket.io
+	@author Shashank Tiwari
+ -->
+<nav class="navbar navbar-default navbar_setting" *ngIf="user_id">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--<a class="logo" routerLink="catalog" >Talent</a>-->
+      <a routerLink="catalog"><img src="../assets/image/main_log.png" style=" max-height: 80px"></a>
+    </div>
+
+    <div class="navbar-brand btn_logined">
+      <a class="login">
+        <div class="dropdown" style="float:right;">
+          <img class="logined-img" src={{profile}} >
+          <div class="dropdown-content">
+            <a routerLink="myData">我的資料</a>
+            <a (click)="generalLogout()">登出</a>
+          </div>
+        </div>
+      </a>
+    </div>
+
+
+    <div class="chatBtn">
+      <a (click)="toChatHistory()" *ngIf="!message_come">
+        <i class="chatIcon-unread fa fa-comments-o"></i>
+      </a>
+      <a (click)="toChatHistory()" *ngIf="message_come">
+        <a class="chatIcon fa fa-comments-o">
+          <span class="fa fa-comment"></span>
+          <span class="num"></span>
+        </a>
+      </a>
+    </div>
+
+
+
+    <a class="notification_btn" (click)="openNotificationModal(talent_notification_template)" *ngIf="talent_notification_come">
+      <a class="chatIcon fa fa-bullhorn">
+        <span class="fa fa-comment"></span>
+        <span class="num"></span>
+      </a>
+    </a>
+    <a class="notification_btn" (click)="openNotificationModal(talent_notification_template)" *ngIf="!talent_notification_come">
+      <i class="fa fa-bullhorn" style="color: #ffffff"></i>
+    </a>
+
+    <ng-template #talent_notification_template>
+
+      <div>
+
+        <div class="modal-header">
+          才能通知
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div *ngFor="let notification of notifications" style="height: 100px;margin-bottom: 20px">
+
+            <div (click)="toTalentPreview(notification.type_id[0]._id)" *ngIf="notification.type === 0" style="height: 100%">
+              <img class="col-md-2" src="{{notification.sender_id[0].profile}}">
+              <div class="col-md-8">
+                <p>{{notification.sender_id[0].name}}</p>
+                <p>{{timeConverter(notification.timestamp)}}</p>
+                <p>{{notification.description}}</p>
+              </div>
+              <img class="col-md-2" [src]="urlSafe('http://1.34.63.239:3001/' + notification.type_id[0].main_image)"
+                   style="width: auto; height: 90%; margin-top: auto;margin-bottom: auto; padding:0 0 0 0;">
+            </div>
+
+            <div (click)="toMyData()" *ngIf="notification.type === 1" style="height: 100%">
+              <img class="col-md-2" src="{{notification.sender_id[0].profile}}">
+              <div class="col-md-8">
+                <p>{{notification.sender_id[0].name}}
+                <p>{{timeConverter(notification.timestamp)}}</p>
+                <p>{{notification.description}}</p>
+              </div>
+              <img class="col-md-2" [src]="urlSafe('http://1.34.63.239:3001/' + notification.type_id[0].main_image)"
+                   style="width: auto; height: 90%; margin-top: auto;margin-bottom: auto;padding: 0 0 0 0;">
+            </div>
+
+            <hr style="width: 90%;margin:0px auto 0px auto;">
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <div class="newBtn">
+      <a routerLink="talentPost" >
+        <span class="newIcon">新才能</span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<nav class="navbar navbar-default navbar_setting" *ngIf="!user_id">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--<a class="logo"  routerLink="catalog">Talent</a>-->
+      <a routerLink="catalog"><img src="../assets/image/main_log.png" style=" max-height: 80px"></a>
+    </div>
+    <div class="navbar-brand btn_login">
+      <a class="login" (click)="openModal(template)">Login</a>
+    </div>
+  </div>
+
+  <ng-template #template>
+    <div class="modal-header">
+      登入
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <button class="loginBtn loginBtn--facebook" style="font-size: 1.5em;" (click)="onFacebookLoginClick()">
+        Login in with Facebook
+      </button>
+    </div>
+
+  </ng-template>
+
+</nav>
+
+
+<router-outlet></router-outlet>

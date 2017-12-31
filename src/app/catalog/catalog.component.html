@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<head>
+</head>
+<body>
+
+<div class="container"
+     infinite-scroll
+     (scrolled)="getMoreTalents()"
+     [infiniteScrollDistance]="10"
+     [infiniteScrollThrottle]="500"
+     [scrollWindow]="false">
+
+  <div class="summary">
+      <div style="width: 33%; height: auto; background-image: url(../../assets/image/left.png)">
+
+      </div>
+      <div class="slogan-block">
+        <p class="slogan">你的才能 讓世界驚嘆</p>
+        <input class="search-block"
+               type="text"
+               name="search"
+               placeholder="Search..."
+               [(ngModel)]="search_word"
+               value="{{search_word}}"
+               (keyup)="toSearchCatalogResult($event)"
+               required
+        >
+      </div>
+      <div style="width: 33%; height: auto; background-image: url(../../assets/image/right.png)">
+
+      </div>
+  </div>
+
+  <div class="console">
+    <div class="cards">
+
+      <div class="card" *ngFor="let talent of talents">
+        <div class="card-contents" (click)="showTalentPreview(talent._id)">
+          <div class="overlay">
+            <p class="card-text">{{talent.description}}</p>
+          </div>
+          <img class="image" [src]="urlSafe('http://1.34.63.239:3001/' + talent.main_image)" alt="Card image cap" *ngIf="talent.main_image!= null">
+          <div class="info">
+            <span class="title">{{talent.title}}</span>
+            <span class="price">$ {{talent.money}}</span>
+          </div>
+            <!--<div class="left_card">-->
+              <!--<img class="card-img" [src]="urlSafe('http://1.34.63.239:3001/' + talent.main_image)" alt="Card image cap" *ngIf="talent.main_image != null">-->
+            <!--</div>-->
+            <!--<div class="right_card">-->
+              <!--<div class="card-block">-->
+                <!--<h4 class="card-title">{{talent.title}}</h4>-->
+                <!--<p class="card-text">{{talent.description}}</p>-->
+                <!--<p class="money card-text">$ {{talent.money}}</p>-->
+              <!--</div>-->
+            <!--</div>-->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="position: relative; margin-bottom: 10%; margin-top: 5%">
+    <ngx-loading [show]="is_loading" [config]="{ backdropBorderRadius: '14px'}"></ngx-loading>
+  </div>
+
+</div>
+
+</body>
+</html>

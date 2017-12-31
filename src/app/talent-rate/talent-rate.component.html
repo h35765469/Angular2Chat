@@ -1,0 +1,30 @@
+<div class="container" style="overflow: auto">
+  <div class="col-md-6">
+    <p>
+      <label [class.selected]="r1.checked">
+        <input #r1 type="radio" name="r" value="one" (change)="setType(0)"> 推
+      </label>
+      <label [class.selected]="r2.checked">
+        <input #r2 type="radio" name="r" value="two" (change)="setType(1)"> 爽
+      </label>
+      <label [class.selected]="r3.checked">
+        <input #r3 type="radio" name="r" value="three" (change)="setType(2)"> 喔
+      </label>
+      <label [class.selected]="r4.checked">
+        <input #r4 type="radio" name="r" value="four" (change)="setType(3)"> 鬧
+      </label>
+      <label [class.selected]="r5.checked">
+        <input #r5 type="radio" name="r" value="five" (change)="setType(4)"> 幹
+      </label>
+    </p>
+    <p>給予評價</p>
+    <input type="text"
+           name="description"
+           class="form-control"
+           placeholder="輸入評語"
+           [(ngModel)]="description"
+           value="{{description}}">
+    <input type="submit" value="評論" (click)="rateTalent()">
+
+  </div>
+</div>

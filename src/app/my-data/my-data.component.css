@@ -1,0 +1,200 @@
+.products_xx{
+  width                  : 33%;
+  height                 : 50px;
+  text-align             : center;
+  float                  : right;
+  display                : inline-block;
+  background-color       : #FF9600;
+  border-top-left-radius : 75%;
+  border-top-right-radius: 75%;
+  color                  : #ffffff;
+  margin-top: -50px;
+  /*margin-left: 66%;*/
+  border: solid 1px #BDBDBD;
+}
+.products_sell:hover,
+.products_buy:hover,
+.products_xx:hover{
+  background-color: #ffffff;
+  cursor          : pointer;
+  color           : #000000;
+}
+.products_sell:focus,
+.products_buy:focus,
+.products_xx:focus{
+  background-color: #ffffff;
+  cursor          : pointer;
+  color           : #000000;
+  outline         : 0;
+}
+
+.products_btn{
+  margin     : auto;
+  padding-top: 15px;
+  font-size  : 20px;
+}
+.products_info{
+  width           : 99.5%;
+  /*height        : 500px;*/
+  height          : auto;
+  border-radius   : 1%;
+  margin          : 75px auto;
+  /*background-color: #FBDB95;*/
+  border: solid 1px #BDBDBD;
+}
+.products_sell{
+  width                  : 33%;
+  height                 : 50px;
+  text-align             : center;
+  display                : inline-block;
+  float: left;
+  /*background-color       : #888888;*/
+  background-color       : #FF9600;
+  border-top-left-radius : 75%;
+  border-top-right-radius: 75%;
+  color                  : #ffffff;
+  margin-top: -50px;
+  border: solid 1px #BDBDBD;
+}
+.products_buy{
+  width                  : 33%;
+  height                 : 50px;
+  text-align             : center;
+  display                : inline-block;
+  float: left;
+  background-color       : #FF9600;
+  border-top-left-radius : 75%;
+  border-top-right-radius: 75%;
+  color                  : #ffffff;
+  margin-top: -50px;
+  margin-left: 33.5%;
+  border: solid 1px #BDBDBD;
+}
+.products_info_data{
+  height          : 100%;
+  background-color: #ffffff;
+  padding-bottom  : 15px;
+}
+.products_info_cards{
+  width           : 30%;
+  height          : 200px;
+  background-color: #CDCAFF;
+  margin          : 15px 0px 0px 2.25%;
+  display         : inline-block;
+  vertical-align  : middle;
+}
+.products_info_photo{
+  width : 80%;
+  margin: 10px auto 5px auto;
+}
+.product_photo{
+  width : 100%;
+  height: auto;
+}
+.products_info_text{
+  width : 80%;
+  margin: auto;
+}
+.products_info_text>p{
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+
+.personal_info_data{
+  max-width    : 60%;
+  text-align   : left;
+  /*float        : right;*/
+  padding-right: 15%;
+  padding-top  : 25px;
+  padding-left : 5%;
+  font-size    : 20px;
+  font-family  : "Impact";
+}
+
+/*for ranking div*/
+.ranking_info{
+  width           : 90%;
+  height          : auto;
+  border-radius   : 2.5%;
+  margin          : 25px auto;
+  background-color: #ffffff;
+  border: solid 1px #BDBDBD;
+}
+.ranking_info_data{
+  width           : 75%;
+  font-size       : 20px;
+  text-align      : left;
+  margin          : auto;
+  padding-top     : 20px;
+  /*padding-bottom: 15px;*/
+}
+/*-------------------*/
+
+
+
+
+/*below for my comment*/
+.comment-header{
+  width: 50px;
+  height: 50px;
+  float: left;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 10px 20px 10px 20px;
+}
+
+.comment-report{
+  float: right;
+  display: inline;
+  margin: 0px 20px 0px 0px;
+  width: 37.5px;
+  height: 25px;
+  background-color: #FF9600;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 5%;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 2.5px;
+}
+
+.comment-sheet{
+  height: auto;
+  width: 275px;
+  background-color: #aaaaaa;
+  padding: 25px 25px 25px 25px;
+  border-radius: 2.5%;
+}
+.selections{
+  text-align: center;
+  padding: 25px 0px 25px 0px;
+  /*background-color: #0000ff;*/
+  font-size: 18px;
+}
+.selection{
+  margin: 0px 2.5px 0px 2.5px;
+}
+.submit-button{
+  width: 40px;
+  height: auto;
+  border-radius: 5%;
+  font-size: 15px;
+  background-color: #ffffff;
+  margin: auto;
+  padding: 5px 5px 5px 5px;
+}
+#message{
+  height: 100px;
+  width: 100%;
+  margin-top: 25px;
+  text-align: left;
+}
+
+.message{
+  height: 100px;
+  width: 100%;
+  margin-top: 25px;
+  text-align: left;
+}
+/*------------------------*/

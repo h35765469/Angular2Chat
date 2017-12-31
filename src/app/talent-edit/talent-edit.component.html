@@ -1,0 +1,224 @@
+<!--<div class="container" style="overflow: auto">-->
+  <!--<table>-->
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>Title</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text"&ndash;&gt;-->
+    <!--&lt;!&ndash;name="title"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+    <!--&lt;!&ndash;placeholder="Enter your Title"&ndash;&gt;-->
+    <!--&lt;!&ndash;[(ngModel)]="title"&ndash;&gt;-->
+    <!--&lt;!&ndash;value="{{talent?.title}}">&ndash;&gt;-->
+    <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>錢</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text"&ndash;&gt;-->
+    <!--&lt;!&ndash;name="money"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+    <!--&lt;!&ndash;placeholder="Enter you Money"&ndash;&gt;-->
+    <!--&lt;!&ndash;[(ngModel)]="money"&ndash;&gt;-->
+    <!--&lt;!&ndash;value="{{talent?.money}}">&ndash;&gt;-->
+    <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>才能介紹</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text"&ndash;&gt;-->
+    <!--&lt;!&ndash;name="description"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+    <!--&lt;!&ndash;placeholder="Enter your money"&ndash;&gt;-->
+    <!--&lt;!&ndash;[(ngModel)]="description"&ndash;&gt;-->
+    <!--&lt;!&ndash;value="{{talent?.description}}">&ndash;&gt;-->
+    <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>地址</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<td>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input type="text"&ndash;&gt;-->
+    <!--&lt;!&ndash;name="location"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+    <!--&lt;!&ndash;placeholder="輸入地址"&ndash;&gt;-->
+    <!--&lt;!&ndash;[(ngModel)]="location"&ndash;&gt;-->
+    <!--&lt;!&ndash;value="{{talent?.location}}">&ndash;&gt;-->
+    <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+
+    <!--<tr *ngFor="let talent_image of talent_images">-->
+      <!--<td>-->
+        <!--<img [src]="urlSafe('http://1.34.63.239:3001/' + talent_image.name)" width="50" height="50">-->
+        <!--<button type="button" class="btn btn-danger btn-xs"-->
+                <!--(click)="removeRemoteImage(talent_image)">-->
+          <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+        <!--</button>-->
+      <!--</td>-->
+    <!--</tr>-->
+
+    <!--<tr *ngFor="let item of uploader.queue">-->
+      <!--<td>-->
+        <!--<img src="{{item.src}}" width="50" height="50">-->
+        <!--<button type="button" class="btn btn-danger btn-xs"-->
+                <!--(click)="item.remove()">-->
+          <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+        <!--</button>-->
+      <!--</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+
+  <!--<form>-->
+    <!--<div class="form-group">-->
+      <!--<input type="file" class="form-control" name="multiple" ng2FileSelect [uploader]="uploader" multiple  />-->
+    <!--</div>-->
+  <!--</form>-->
+
+
+  <!--<div class="container">-->
+    <!--<div class="col-md-5">-->
+      <!--<div class="form-area">-->
+        <!--<br style="clear:both">-->
+        <!--<div class="form-group">-->
+          <!--<label>標題</label>-->
+          <!--<input type="text"-->
+                 <!--name="title"-->
+                 <!--class="form-control"-->
+                 <!--placeholder="Enter your Title"-->
+                 <!--[(ngModel)]="title"-->
+                 <!--value="{{talent?.title}}"-->
+                 <!--required-->
+          <!--&gt;-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<label>金額</label>-->
+          <!--<input type="number"-->
+                 <!--name="money"-->
+                 <!--class="form-control"-->
+                 <!--placeholder="Enter your money"-->
+                 <!--[(ngModel)]="money"-->
+                 <!--value="{{talent?.money}}"-->
+                 <!--min="0"-->
+                 <!--step="1"-->
+                 <!--required-->
+          <!--&gt;-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+          <!--<label>天賦描述</label>-->
+          <!--<textarea class="form-control" type="textarea" placeholder="Enter your description" [(ngModel)]="description"-->
+                    <!--maxlength="140" rows="7" value="{{talent?.description}}"></textarea>-->
+          <!--<span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>-->
+        <!--</div>-->
+
+        <!--<button class="submit-btn" (click)="editTalent()">更改</button>-->
+        <!--<button class="btn-primary" (click)="deleteTalent()">刪除才能</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+<!--</div>-->
+
+
+<div class="container" style="overflow: auto">
+  <div class="profile_bg" style="margin-top: 25px">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 nice-wrapper">
+      <div class="postBlock">
+        <div class="postitle"><b>新才能</b></div>
+        <p class="prompt"><b>Step1. 上傳圖片</b></p>
+        <div class="slideshow-post">
+          <!--<div class="product_div" *ngFor="let talent_image of talent_images">-->
+
+            <!--<button type="button" class="btn btn-danger btn-xs"-->
+                    <!--(click)="removeRemoteImage(talent_image)">-->
+              <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+            <!--</button>-->
+
+            <!--<img class="product_img" [src]="urlSafe('http://1.34.63.239:3001/' + talent_image.name)">-->
+          <!--</div>-->
+
+          <!--<div class="product_div" *ngFor="let item of uploader.queue">-->
+
+            <!--<button type="button" class="btn btn-danger btn-xs"-->
+                    <!--(click)="item.remove()">-->
+              <!--<span class="glyphicon glyphicon-trash"></span> Remove-->
+            <!--</button>-->
+
+            <!--<img class="product_img" src="{{item.src}}">-->
+          <!--</div>-->
+
+          <label class="main-image-icon" *ngIf="main_image_position === all_talent_images.indexOf(this.selectedImage)" style="color: yellow">主頁</label>
+          <label class="main-image-icon" *ngIf="main_image_position !== all_talent_images.indexOf(this.selectedImage)" style="color: #dc322f" (click)="setMainImagePosition()">主頁</label>
+
+          <i class="fa fa-times delete-image-icon" aria-hidden="true" (click)="removeImage()"></i>
+
+          <img class="product_img" [src]="urlSafe('http://1.34.63.239:3001/' + selectedImage?.name)" *ngIf="selected_image_type === 0 && selectedImage !== null">
+          <img class="product_img" src="{{selectedImage.src}}" *ngIf="selected_image_type === 1 && selectedImage !== null">
+
+          <div>
+            <ng-container *ngFor="let image of all_talent_images">
+              <span *ngIf="image == selectedImage" class="selected-dot"></span>
+              <span *ngIf="image != selectedImage" class="dot"></span>
+            </ng-container>
+          </div>
+
+          <div class="left_arrow" unselectable="on" (click)="navigate(false)">&#10094;</div>
+          <div class="right_arrow" unselectable="on" (click)="navigate(true)">&#10095;</div>
+          <!-- <span class="circle_img" onclick=""></span> -->
+        </div>
+        <div class="slideblock"></div>
+        <!-- <input type="file" class="post-function-button" multiple> -->
+        <!--<input type="file" class="post-function-button" name="multiple" ng2FileSelect [uploader]="uploader" multiple  />-->
+        <!--<div class="post-function-button"><b>選擇檔案</b></div>-->
+        <label class="post-function-button">
+          <b>選擇檔案</b><input type="file" style="display: none;" name="multiple" ng2FileSelect [uploader]="uploader" multiple (change)="addNewImages()">
+        </label>
+
+        <p class="prompt"><b>Step2. 輸入資訊</b></p>
+        <div class="inputblocks">
+          <input type="text"
+                 name="product-name"
+                 placeholder="服務名稱"
+                 class="inputblock"
+                 [(ngModel)]="title"
+                 value="{{talent?.title}}"
+                 required>
+
+          <input type="number"
+                 name="product-price"
+                 placeholder="販售金額"
+                 class="inputblock price"
+                 [(ngModel)]="money"
+                 value="{{talent?.money}}"
+                 min="0"
+                 step="1"
+                 required>
+
+          <textarea class="describeblock" placeholder="針對服務內容進行描述" [(ngModel)]="description"
+                    maxlength="140" rows="7"></textarea>
+        </div>
+        <div class="post-function-button" (click)="editTalent()"><b>編輯才能</b></div>
+        <div class="post-function-button" (click)="openDeleteTalentModal(delete_talent_template)"><b>刪除才能</b></div>
+
+        <ng-template #delete_talent_template>
+          <div class="modal-header">
+            刪除才能
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <p>你確定要刪除你的才能</p>
+            <button type="button" (click)="deleteTalent()">確定</button>
+            <button type="button" (click)="modalRef.hide()">取消</button>
+          </div>
+
+        </ng-template>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

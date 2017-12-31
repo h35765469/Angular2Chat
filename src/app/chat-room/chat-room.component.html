@@ -1,0 +1,67 @@
+<div class="container">
+
+  <!-- Loading overlay section starts -->
+  <div [class.overlay-display]="overlayDisplay" class="overlay">
+    <h1>Loading</h1>
+  </div>
+  <!-- Loading overlay section starts -->
+
+  <div class="home">
+
+    <div class="row chat-body">
+
+      <div class="col-md-4">
+        <div class="personal_info" (click)="toOtherData()" style="cursor: pointer">
+          <img src="{{selectedProfile}}" class="personal_info_header">
+          <b class="personal_info_data">{{selectedName}}</b>
+        </div>
+      </div>
+
+      <!-- Messages section starts -->
+      <div class="col-md-8">
+        <div class="massege-wrapper">
+          <div class="massege-container" style="margin: 25px 0 0 0">
+
+            <ul class="message-thread" *ngIf="messages.length > 0">
+                <li *ngFor="let message of messages" [class.align-right]="alignConversationReply(message.sender_id)" style="margin-bottom: 25px">
+                  {{ message.message}}
+                </li>
+            </ul>
+
+            <ul class="message-thread" *ngIf="messages.length <= 0">
+            </ul>
+
+          </div>
+          <div class="message-typer">
+					<textarea
+            class="message form-control"
+            placeholder="Type and hit Enter"
+            [(ngModel)]="message"
+            (keyup)="sendConversationReply($event)"
+          ></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- Messages section ends -->
+
+      <!-- header section starts -->
+      <!--<div class="col-md-4">-->
+        <!--<div class="header">-->
+          <!--<div class="welcome-user">-->
+            <!--<span>Hello {{username}}</span>-->
+            <!--<div class="home-navigation">-->
+              <!--<ul>-->
+                <!--<li (click)="logout()" >Logout</li>-->
+              <!--</ul>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!-- header section ends -->
+
+
+    </div>
+
+  </div>
+
+</div>

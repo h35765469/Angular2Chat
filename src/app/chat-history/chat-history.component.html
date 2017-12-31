@@ -1,0 +1,154 @@
+
+<!-- Loading overlay section starts -->
+<div [class.overlay-display]="overlayDisplay" class="overlay">
+  <h1>Loading</h1>
+</div>
+<!-- Loading overlay section starts -->
+<div class="container">
+  <div class="home">
+
+    <div class="row chat-body">
+
+      <!-- Messages section starts -->
+      <!--<div class="col-md-8">-->
+        <!--<div class="massege-wrapper">-->
+          <!--<div class="massege-container">-->
+
+            <!--<div *ngIf="selectedUserName"-->
+                 <!--class="opposite-user">-->
+              <!--Chatting with {{selectedUserName}}-->
+            <!--</div>-->
+
+            <!--<ul class="message-thread">-->
+
+              <!--<li *ngIf="messages.length > 0">-->
+                <!--<div *ngFor="let message of messages" [class.align-right]="alignConversationReply(message.sender_id)">-->
+                  <!--{{ message.message}}-->
+                <!--</div>-->
+              <!--</li>-->
+
+            <!--</ul>-->
+
+          <!--</div>-->
+          <!--<div class="message-typer">-->
+          <!--<textarea-->
+            <!--class="message form-control"-->
+            <!--placeholder="Type and hit Enter"-->
+            <!--[(ngModel)]="message"-->
+            <!--(keyup)="sendConversationReply($event)"-->
+          <!--&gt;</textarea>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!-- Messages section ends -->
+
+      <div class="col-md-4">
+        <div class="conversation_list">
+          <p (click)="set_is_unread(false)" style="cursor: pointer">全部訊息</p>
+          <p (click)="set_is_unread(true)" style="cursor: pointer">未讀訊息</p>
+        </div>
+      </div>
+
+      <!-- User chat list section starts -->
+      <div class="col-md-8">
+        <div class="user-list-wrapper">
+          <ul class="user-list" *ngIf="!is_unread">
+            <li *ngFor="let conversation of conversation_list"
+            >
+              <!--the following two are get conversation from remote-->
+              <div *ngIf="conversation.conversation_result">
+                <div *ngIf="conversation.conversation_result.user1_id[0]._id == userId"
+                     (click)="selectedUser(conversation.conversation_result.user2_id[0])"
+                     [class.selected-user]="isUserSelected(conversation.conversation_result.user2_id[0]._id)">
+                  <p>{{conversation.conversation_result.user2_id[0].name}}</p>
+                  <p>{{timeConverter(conversation.conversation_result.timestamp)}}</p>
+                  <p>{{conversation.message }}</p>
+                  <div *ngIf="conversation.sender_id !== userId">
+                    <div *ngIf="conversation.conversation_result.is_read === 0">
+                      <p><i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="conversation.conversation_result">
+                <div *ngIf="conversation.conversation_result.user2_id[0]._id == userId"
+                     (click)="selectedUser(conversation.conversation_result.user1_id[0])"
+                     [class.selected-user]="isUserSelected(conversation.conversation_result.user1_id[0]._id)">
+                  <p>{{conversation.conversation_result.user1_id[0].name}}</p>
+                  <p>{{timeConverter(conversation.conversation_result.timestamp)}}</p>
+                  <p>{{conversation.message }}</p>
+                  <div *ngIf="conversation.sender_id !== userId">
+                    <div *ngIf="conversation.conversation_result.is_read === 0">
+                      <p><i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!------------------------------------------->
+
+              <!--this come from who send you message instantly-->
+              <div *ngIf="!conversation.conversation_result">
+                <div *ngIf="conversation.sender_id"
+                     (click)="selectedUserFromInstantMessage(conversation)"
+                     [class.selected-user]="isUserSelected(conversation.sender_id)">
+                  >
+                  <p>{{conversation.name}}</p>
+                  <p>{{conversation.message }}</p>
+                  <p><i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i></p>
+                </div>
+              </div>
+              <!------------------------------------->
+            </li>
+          </ul>
+
+          <ul class="user-list" *ngIf="is_unread">
+            <li *ngFor="let unread_conversation of unread_conversation_list">
+              <!--the following two are get conversation from remote-->
+              <div *ngIf="unread_conversation.conversation_result">
+                <div *ngIf="unread_conversation.conversation_result.user1_id[0]._id == userId"
+                     (click)="selectedUser(unread_conversation.conversation_result.user2_id[0])"
+                     [class.selected-user]="isUserSelected(unread_conversation.conversation_result.user2_id[0]._id)">
+                  <p>{{unread_conversation.conversation_result.user2_id[0].name}}</p>
+                  <p>{{timeConverter(unread_conversation.conversation_result.timestamp)}}</p>
+                  <p>{{unread_conversation.message }}</p>
+                  <p><i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i></p>
+                </div>
+              </div>
+
+              <div *ngIf="unread_conversation.conversation_result">
+                <div *ngIf="unread_conversation.conversation_result.user2_id[0]._id == userId"
+                     (click)="selectedUser(unread_conversation.conversation_result.user1_id[0])"
+                     [class.selected-user]="isUserSelected(unread_conversation.conversation_result.user1_id[0]._id)">
+                  <p>{{unread_conversation.conversation_result.user1_id[0].name}}</p>
+                  <p>{{timeConverter(unread_conversation.conversation_result.timestamp)}}</p>
+                  <p>{{unread_conversation.message }}</p>
+                  <p><i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i></p>
+                </div>
+              </div>
+              <!------------------------------------------->
+
+              <!--this come from who send you message instantly-->
+              <div *ngIf="!unread_conversation.conversation_result">
+                <div *ngIf="unread_conversation.sender_id"
+                     (click)="selectedUserFromInstantMessage(unread_conversation)"
+                     [class.selected-user]="isUserSelected(unread_conversation.sender_id)">
+                  >
+                  <p>{{unread_conversation.name}}</p>
+                  <p>{{unread_conversation.message }}</p>
+                  <p><i class="fa fa-exclamation" aria-hidden="true" style="color: red"></i></p>
+                </div>
+              </div>
+              <!------------------------------------->
+
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <!-- User chat list section ends -->
+
+    </div>
+
+  </div>
+</div>

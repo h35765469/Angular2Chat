@@ -1,0 +1,407 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+/*a{*/
+  /*color: #000 !important;*/
+/*}*/
+a:hover,
+a:visited,
+a:link{
+  text-decoration: none;
+  cursor         : pointer;
+}
+/*li{*/
+  /*width: 50% !important;*/
+/*}*/
+
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix {
+  overflow: auto;
+  zoom: 1;
+}
+.container{
+  overflow: auto;
+}
+
+.justifier{
+  padding: 20px;
+}
+
+.app-heading{
+  text-align: center;
+  font-size: 32px;
+  margin-top: 30px;
+}
+
+.app-heading-tech{
+  font-size: 13px;
+}
+
+.app-author{
+  text-align: center;
+  font-size: 20px;
+}
+
+app-root{
+  height: 100%;
+  width: 100%;
+}
+
+/*below are used for chart-area*/
+.box{
+  width         :100%;
+  height        : auto;
+  padding-bottom: 25px;
+  /*float       :left;*/
+}
+.zone{
+  width   :100%;
+  /*height:500px;*/
+}
+/*----------------------------- */
+
+
+/*below are for personal data*/
+.personal_info_header{
+  width        : 100px;
+  height       : 100px;
+  border-radius: 50%;
+  margin-top   : 25px;
+  margin-left  : 35px;
+}
+/*----------------------------*/
+
+/*below are for facebook login*/
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: center;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+  width: 100%;
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+.loginBtn--facebook {
+  background-color: #4C69BA;
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C;
+}
+.loginBtn--facebook:before {
+  border-right: #364e92 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+}
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background-color: #5B7BD5;
+  background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+/*------------------------------*/
+
+/*home page*/
+html, body{
+  height            : 100%;
+  overflow-x        : hidden;
+  overflow-y        : hidden;
+  /*background-color  : #adadad;*/
+  background-color: #bce8f1;
+  align-items       : center;
+  justify-content   : center;
+  flex-direction    : column;
+  /*	font-family   : "Impact";*/
+  margin            : 0px 0px 0px 0px;
+  /*color: #fff;*/
+}
+html{
+  /*overflow-y: hidden;*/
+}
+html.product{
+  /*overflow-y: scroll;*/
+}
+
+div.container{
+  width: 100%;
+  height: 100%;
+  /*overflow-y: auto;*/
+  margin-top: 50px;
+  /*margin-bottom: 50px;*/
+  padding: 0px 0px 50px 0px;
+}
+
+/*for personal info col*/
+.personal_info_col{
+  margin-top: 25px;
+}
+/*--*/
+
+/*for product info col*/
+.content_info_col{
+  margin-top: 25px;
+}
+/*--*/
+
+
+/*below for slogan*/
+div.summary{
+  width: 100%;
+  height: 50%;
+  z-index         : -1;
+  /*background-color: #aaaaaa;*/
+  text-align      : center;
+  /*margin-top     : 50px;*/
+  font-family     : "Impact";
+  /*background-image: url(../html/scare.gif);*/
+  background-repeat: no-repeat;
+  /*background-position: center center;*/
+  background-size: 100% auto;
+  margin:0px auto;
+}
+div.slogan-block{
+  padding-top   : 35px;
+  height:200px;
+  padding-bottom: 35px;
+  /*color: #000;*/
+}
+.slogan{
+  background: -webkit-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
+  /* For Opera 11.1 to 12.0 */
+  background: -o-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
+  /* For Fx 3.6 to 15 */
+  background: -moz-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
+  /* Standard syntax */
+  background: linear-gradient(to right,red, red,orange,yellow,green,blue,indigo,violet);
+  color:transparent;
+  -webkit-background-clip: text;
+  /*background-clip: text;*/
+}
+/*--*/
+
+/*below for seach*/
+.search-block{
+  width              : 50px;
+  height             : 50px;
+  box-sizing         : border-box;
+  border             : 2px solid #000000;
+  border-radius      : 4px;
+  font-size          : 25px;
+  background-color   : white;
+  background-image   : url('assets/image/search.png');
+  background-size    : 25px 25px;
+  background-position: 10px 10px;
+  background-repeat  : no-repeat;
+  padding            : 12px 20px 12px 25px;
+  margin-bottom      : 25px;
+  /*-webkit-transition : width 0.4s ease-in-out;*/
+  transition         : width 0.4s ease-in-out;
+  /*margin-top: 350px;*/
+}
+.search-block:focus{
+  width  : 350px;
+  padding: 12px 20px 12px 45px;
+  border : 3px solid #0000ff;
+}
+/*--*/
+
+
+/*below show overlay above talent preview card*/
+.overlay{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #FFFFFF;
+}
+.card:hover .overlay{
+  opacity: 1;
+}
+.info{
+  padding:5px auto 5px auto;
+  width: auto;
+  height:25px;
+}
+.title{
+
+}
+.price{
+
+}
+.image{
+  width:100%;
+  height:100%;
+  background-color: #DDDDDD;
+  border:2px solid #000000;
+  display       : inline-block;
+  text-align    : center;
+  margin        : auto;
+  vertical-align: middle;
+}
+/*-------------*/
+
+
+/*below show talent preview card*/
+.console{
+  width     : 95%;
+  margin    : auto;
+  text-align: left;
+}
+.cards{
+  /*position    : absolute;*/
+  /*margin-top    : 25px;*/
+  /*text-align  : left;*/
+  /*padding-left: 2.5%;*/
+  /*display: flex;*/
+}
+.card{
+  /*margin          : 0px 10px 20px 10px;*/
+  margin-left: 2.5%;
+  /*margin-right: 1.25%;*/
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #333;
+  width           : 30%;
+  height          : 200px;
+  display         : inline-block;
+  vertical-align  : middle;
+}
+
+.card-contents{
+  height        : 100%;
+  position      : relative;
+  /*margin        : auto;*/
+  /*display     : ta;*/
+  vertical-align: middle;
+}
+/*------------*/
+
+
+/*load more progress*/
+.pre-bootstrap{
+  /*position: absolute;*/
+  left: calc(50% - 30px);
+  top:  calc(50% - 50px);
+}
+
+.pre-bootstrap-text{
+  line-height: 20px;
+  margin-bottom: 20px;
+
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.pre-bootstrap-spinner {
+  width: 60px;
+  height: 60px;
+  background-color: #ff5252;
+
+  /*margin: 0 auto;
+  margin-top: calc(25% - 40px);*/
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+  } 50% {
+      transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+      -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    } 100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+      }
+}
+/*------------------*/
+
+
+/*for personal */
+.personal_info{
+  width           : 90%;
+  height          : auto;
+  padding-bottom  : 25px;
+  border-radius   : 2.5%;
+  margin          : 25px auto 0px auto;
+  background-color: #ffffff;
+  border: solid 1px #BDBDBD;
+}
+.personal_info_data{
+  max-width    : 60%;
+  text-align   : center;
+  /*float        : right;*/
+  padding-right: 15%;
+  padding-top  : 25px;
+  padding-left : 5%;
+  font-size    : 20px;
+  font-family  : "Impact";
+}
+.personal_info_header{
+  width        : 100px;
+  height       : 100px;
+  border-radius: 50%;
+  margin-top   : 25px;
+  margin-left  : 35px;
+}
+/*----------------------------*/
+
+
+.profile_bg{
+  height          : 100%;
+  /*border: solid 1px #BDBDBD;*/
+  /*background-color: #cccccc;*/
+}
+
+/*below for slideshow`s image indicator*/
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.selected-dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #717171;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+/*--------------------------------------------*/
