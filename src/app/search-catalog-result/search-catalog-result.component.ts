@@ -4,7 +4,7 @@ import {TalentService} from '../talent.service';
 import {Talent} from '../shared/talent';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
-import {BaseComponent} from "../base/base.component";
+import {BaseComponent} from '../base/base.component';
 
 @Component({
   selector: 'app-search-catalog-result',
@@ -38,13 +38,15 @@ export class SearchCatalogResultComponent extends BaseComponent implements OnIni
   }
 
   public getSearchTalents(): void {
-    this.talent_service.getSearchTalents({search_word: this.search_word}, (error, response) => {
+    this.talent_service.getSearchTalents({search_word: this.search_word, search_talent_amount: 6}, (error, response) => {
       this.talents = response.message;
     });
   }
 
   public getMoreSearchTalents(): void {
-
+    this.talent_service.getSearchTalents({search_word: this.search_word, search_talent_amount: this.talents.length + 6}, (error, response) => {
+      this.talents = response.message;
+    });
   }
 
   // make url safe
