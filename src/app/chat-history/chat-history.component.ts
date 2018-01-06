@@ -273,14 +273,30 @@ export class ChatHistoryComponent implements OnInit {
 
   // get recent message list
   getConversationList() {
-    this.chatService.getConversationList({user_id: this.userId}, (error, response) => {
+    this.chatService.getConversationList({user_id: this.userId, conversation_amount: 10}, (error, response) => {
       this.conversation_list = response.message;
       for (let i = 0 ; i < this.conversation_list.length ; i++) {
         if (this.conversation_list[i].sender_id !== this.userId && this.conversation_list[i].conversation_result.is_read === 0) {
           this.unread_conversation_list.push(this.conversation_list[i]);
         }
       }
-      console.log('fuck ' + JSON.stringify(this.conversation_list));
+    });
+  }
+
+  getMoreConversationList() {
+    this.chatService.getConversationList({user_id: this.userId, conversation_amount: this.conversation_list.length + 6}, (error, response) => {
+      this.conversation_list = response.message;
+    });
+  }
+
+  getMoreUnReadConversationList() {
+    this.chatService.getConversationList({user_id: this.userId, conversation_amount: this.unread_conversation_list.length + 6}, (error, response) => {
+      this.unread_conversation_list.length = 0;
+      for (let i = 0 ; i < response.message.length ; i++) {
+        if (response.message[i].sender_id !== this.userId && response.message[i].conversation_result.is_read === 0) {
+          this.unread_conversation_list.push(response.message[i]);
+        }
+      }
     });
   }
 
