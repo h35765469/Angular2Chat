@@ -184,13 +184,7 @@
                 <!--</div>-->
               <!--</div>-->
               <div class="console">
-                <div class="cards"
-                     style="overflow: scroll"
-                     infinite-scroll
-                     (scrolled)="getUserMoreTalents()"
-                     [infiniteScrollDistance]="1"
-                     [infiniteScrollThrottle]="50"
-                     [scrollWindow]="false">
+                <div>
 
                   <div class="card" *ngFor="let my_talent of my_talents">
                     <div class="card-contents" (click)="toTalentPreview(my_talent._id)">
@@ -216,6 +210,8 @@
                   </div>
                 </div>
               </div>
+
+              <button *ngIf="more_talents" (click)="getUserMoreTalents()">載入更多</button>
 
             </div>
 
@@ -280,13 +276,7 @@
               <!--</div>-->
 
               <div class="console">
-                <div class="cards"
-                     style="overflow: scroll"
-                     infinite-scroll
-                     (scrolled)="getUserMoreBuys()"
-                     [infiniteScrollDistance]="1"
-                     [infiniteScrollThrottle]="50"
-                     [scrollWindow]="false">
+                <div>
 
                   <div class="card" *ngFor="let my_buy of my_buys">
                     <div class="card-contents">
@@ -352,6 +342,8 @@
                 </div>
               </div>
 
+              <button *ngIf="more_buys" (click)="getUserMoreBuys()">載入更多</button>
+
             </div>
 
 
@@ -402,56 +394,48 @@
                   <!--</ng-template>-->
 
                 <!--</table>-->
-                <div class="w3-container"
-                     style="overflow: scroll"
-                     infinite-scroll
-                     (scrolled)="getUserMoreRates()"
-                     [infiniteScrollDistance]="1"
-                     [infiniteScrollThrottle]="50"
-                     [scrollWindow]="false">
+              <div class="w3-card-4"
+                   style="width:100%; height: auto; background-color: #FFFFFF; min-height: 80px"
+                   *ngFor="let my_rate of my_rates"
+              >
+                <div class="w3-container">
 
-                  <div class="w3-card-4"
-                       style="width:100%; height: auto; margin:20px 0 0 0; background-color: #FFFFFF; min-height: 80px"
-                       *ngFor="let my_rate of my_rates"
-                  >
-                    <div class="w3-container">
-
-                      <div class="col-md-2">
-                        <img [src]="my_rate?.user.profile" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                             style="width: 60px; height: 60px; margin-top: 10px">
-                      </div>
-
-                      <div class="col-md-8">
-                        <p style="word-break: break-all">{{my_rate?.user.name}}</p>
-                        <p style="word-break:break-all">{{my_rate?.description}}</p>
-                      </div>
-
-                      <div class="comment-report" (click)="openModal(template)">檢舉</div>
-
-                      <ng-template #template>
-                        <div class="modal-header">
-                          檢舉留言
-                          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-
-                        <div class="modal-body">
-                          <input type="text"
-                                 name="report_content"
-                                 class="form-control"
-                                 placeholder="輸入檢舉內容"
-                                 [(ngModel)] = "report_content"
-                          >
-                          <button type="button" (click)="report(my_rate._id, 2, report_content)">檢舉</button>
-                        </div>
-
-                      </ng-template>
-
-                    </div>
+                  <div class="col-md-2">
+                    <img [src]="my_rate?.user.profile" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                         style="width: 60px; height: 60px; margin-top: 10px">
                   </div>
-                </div>
 
+                  <div class="col-md-8">
+                    <p style="word-break: break-all">{{my_rate?.user.name}}</p>
+                    <p style="word-break:break-all">{{my_rate?.description}}</p>
+                  </div>
+
+                  <div class="comment-report" (click)="openModal(template)">檢舉</div>
+
+                  <ng-template #template>
+                    <div class="modal-header">
+                      檢舉留言
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <input type="text"
+                             name="report_content"
+                             class="form-control"
+                             placeholder="輸入檢舉內容"
+                             [(ngModel)] = "report_content"
+                      >
+                      <button type="button" (click)="report(my_rate._id, 2, report_content)">檢舉</button>
+                    </div>
+
+                  </ng-template>
+
+                </div>
+              </div>
+
+              <button *ngIf="more_rates" (click)="getUserMoreRates()">載入更多</button>
             </div>
 
           </div>
