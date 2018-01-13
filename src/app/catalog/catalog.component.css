@@ -1,2 +1,14 @@
+.left-block{
+    background-image: url("../../assets/image/left.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+}
 
+.right-block{
+    background-image: url("../../assets/image/right.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height:100%;
+}
 
