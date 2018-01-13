@@ -167,15 +167,19 @@ export class MyDataComponent implements OnInit {
         alert(response);
       }else {
         if (!response.error) {
-          this.my_talents = response.message;
-          if (this.my_talents.length === 6) {
-            this.more_talents = false;
-          }else {
-            if (this.my_talents.length % 6 === 0) {
-              this.more_talents = true;
-            }else {
+          if (this.my_talents.length !== response.message.length) {
+            this.my_talents = response.message;
+            if (this.my_talents.length === 6) {
               this.more_talents = false;
+            }else {
+              if (this.my_talents.length % 6 === 0) {
+                this.more_talents = true;
+              }else {
+                this.more_talents = false;
+              }
             }
+          }else {
+            this.more_talents = false;
           }
         }
       }
@@ -210,15 +214,19 @@ export class MyDataComponent implements OnInit {
         alert(response);
       }else {
         if (!response.error) {
-          this.my_buys = response.message;
-          if (this.my_buys.length === 6) {
-            this.more_buys = false;
-          }else {
-            if (this.my_buys.length % 6 === 0) {
-              this.more_buys = true;
-            }else {
+          if (this.my_buys !== response.message.length) {
+            this.my_buys = response.message;
+            if (this.my_buys.length === 6) {
               this.more_buys = false;
+            }else {
+              if (this.my_buys.length % 6 === 0) {
+                this.more_buys = true;
+              }else {
+                this.more_buys = false;
+              }
             }
+          }else {
+            this.more_buys = false;
           }
         }
       }
@@ -261,18 +269,15 @@ export class MyDataComponent implements OnInit {
             }
           }
 
-          // this.my_temp_rates.length = 0; // clean the array
-          // if (this.my_rates.length > 6) {
-          //   this.more_rates = true;
-          //   for (let i = 0 ; i < 6 ; i++) {
-          //     this.my_temp_rates.push(this.my_rates[i]);
-          //   }
-          // }else {
-          //   this.more_rates = false;
-          //   for (let i = 0 ; i < this.my_rates.length ; i++) {
-          //     this.my_temp_rates.push(this.my_rates[i]);
-          //   }
-          // }
+          if (this.my_rates.length === 0) {
+            this.more_rates = false;
+          }else {
+            if (this.my_rates.length % 6 === 0) {
+              this.more_rates = true;
+            }else {
+              this.more_rates = false;
+            }
+          }
 
           this.chart_datas = [{data: [this.rates_count.type,
                                       this.rates_count.type1,
@@ -301,43 +306,57 @@ export class MyDataComponent implements OnInit {
         alert(response);
       }else {
         if (!response.error) {
-          this.my_rates.length = 0;
-          for (let i = 0; i < response.message.length; i++) {
-            const user: User = response.message[i].commentator_id[0];
-            const talent: Talent = response.message[i].talent_id[0];
-            const rate: Rate = {} as Rate;
-            rate._id = response.message[i]._id;
-            rate.type = response.message[i].type;
-            rate.description = response.message[i].description;
-            rate.user = user;
-            rate.talent = talent;
-            this.my_rates.push(rate);
-            if (rate.type !== null) {
-              switch (rate.type.toString()) {
-                case '0':
-                  this.rates_count.type++;
-                  break;
-                case '1':
-                  this.rates_count.type1++;
-                  break;
-                case '2':
-                  this.rates_count.type2++;
-                  break;
-                case '3':
-                  this.rates_count.type3++;
-                  break;
-                case '4':
-                  this.rates_count.type4++;
-                  break;
+          if (this.my_rates.length !== response.message.length) {
+            this.my_rates.length = 0;
+            for (let i = 0; i < response.message.length; i++) {
+              const user: User = response.message[i].commentator_id[0];
+              const talent: Talent = response.message[i].talent_id[0];
+              const rate: Rate = {} as Rate;
+              rate._id = response.message[i]._id;
+              rate.type = response.message[i].type;
+              rate.description = response.message[i].description;
+              rate.user = user;
+              rate.talent = talent;
+              this.my_rates.push(rate);
+              if (rate.type !== null) {
+                switch (rate.type.toString()) {
+                  case '0':
+                    this.rates_count.type++;
+                    break;
+                  case '1':
+                    this.rates_count.type1++;
+                    break;
+                  case '2':
+                    this.rates_count.type2++;
+                    break;
+                  case '3':
+                    this.rates_count.type3++;
+                    break;
+                  case '4':
+                    this.rates_count.type4++;
+                    break;
+                }
               }
             }
-          }
 
-          this.chart_datas = [{data: [this.rates_count.type,
-            this.rates_count.type1,
-            this.rates_count.type2,
-            this.rates_count.type3,
-            this.rates_count.type4], label: '評價'}];
+            if (this.my_rates.length === 0) {
+              this.more_rates = false;
+            }else {
+              if (this.my_rates.length % 6 === 0) {
+                this.more_rates = true;
+              }else {
+                this.more_rates = false;
+              }
+            }
+
+            this.chart_datas = [{data: [this.rates_count.type,
+              this.rates_count.type1,
+              this.rates_count.type2,
+              this.rates_count.type3,
+              this.rates_count.type4], label: '評價'}];
+          }else {
+            this.more_rates = false;
+          }
         }
       }
     });
