@@ -1,9 +1,9 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {GeneralService} from './general.service';
 import {ChatService} from './chat.service';
 import {HttpService} from './http.service';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {BsModalRef, BsModalService, ModalDirective} from 'ngx-bootstrap';
 import {SocketService} from './socket.service';
 import {NotificationService} from './notification.service';
 declare const FB: any;
@@ -15,6 +15,7 @@ declare const FB: any;
   providers: [GeneralService, ChatService, HttpService, SocketService, NotificationService],
 })
 export class AppComponent implements OnInit {
+  @ViewChild(ModalDirective) modal: ModalDirective;
   title = 'app';
   public modalRef: BsModalRef;
   user_id = localStorage.getItem('user_id');
@@ -223,6 +224,10 @@ export class AppComponent implements OnInit {
 
   timeConverter(time_stamp) {
     return this.general_service.timeConverter(time_stamp);
+  }
+
+  showModal() {
+    this.modal.show();
   }
 
 }
