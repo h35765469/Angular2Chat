@@ -10,8 +10,8 @@
             <div class="slideshow-post">
               <div class="product_div" *ngIf="selectedImage">
 
-                <label class="main-image-icon" *ngIf="main_image_position === uploader.queue.indexOf(this.selectedImage)" style="color: yellow">主頁</label>
-                <label class="main-image-icon" *ngIf="main_image_position !== uploader.queue.indexOf(this.selectedImage)" style="color: #dc322f" (click)="setMainImagePosition()">主頁</label>
+                <label class="main-image-icon" *ngIf="main_image_position === uploader.queue.indexOf(this.selectedImage)" style="color: #000">封面</label>
+                <label class="main-image-icon" *ngIf="main_image_position !== uploader.queue.indexOf(this.selectedImage)" style="color: #aaa" (click)="setMainImagePosition()">設成封面</label>
 
                 <i class="fa fa-times delete-image-icon" aria-hidden="true" (click)="deleteImagePreview()"></i>
 
@@ -35,10 +35,10 @@
             <!-- <input type="file" class="post-function-button" multiple> -->
             <!--<input type="file" class="post-function-button" name="multiple" ng2FileSelect [uploader]="uploader" multiple  />-->
             <!--<div class="post-function-button"><b>選擇檔案</b></div>-->
-            <label class="post-function-button">
+            <div class="post-function-button" >
               <b>選擇檔案</b>
-              <input type="file" style="display: none;" name="multiple"  (change)="selectedImage = uploader.queue[0]" ng2FileSelect [uploader]="uploader" multiple>
-            </label>
+              <input type="file" class="input-file"  (change)="selectedImage = uploader.queue[0]" ng2FileSelect [uploader]="uploader" multiple>
+            </div>              
 
             <p class="prompt"><b>Step2. 輸入資訊</b></p>
             <div class="inputblocks">
@@ -63,7 +63,9 @@
               <textarea class="describeblock" placeholder="針對服務內容進行描述" [(ngModel)]="description"
                         maxlength="140" rows="7"></textarea>
             </div>
-            <div class="post-function-button" (click)="postTalent()"><b>開賣啦</b></div>
+            <div class="post-function-button" (click)="postTalent()">
+                <b>開賣啦</b>
+            </div>
           </div>
         </div>
         <div class="col-md-2"></div>
