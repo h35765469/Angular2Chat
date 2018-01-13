@@ -126,8 +126,8 @@
     <div class="col-md-2"></div>
     <div class="col-md-8 nice-wrapper">
       <div class="postBlock">
-        <div class="postitle"><b>新才能</b></div>
-        <p class="prompt"><b>Step1. 上傳圖片</b></p>
+        <div class="postitle"><b>編輯才能</b></div>
+        <p class="prompt"><b>才能圖片</b></p>
         <div class="slideshow-post">
           <!--<div class="product_div" *ngFor="let talent_image of talent_images">-->
 
@@ -149,8 +149,8 @@
             <!--<img class="product_img" src="{{item.src}}">-->
           <!--</div>-->
 
-          <label class="main-image-icon" *ngIf="main_image_position === all_talent_images.indexOf(this.selectedImage)" style="color: yellow">主頁</label>
-          <label class="main-image-icon" *ngIf="main_image_position !== all_talent_images.indexOf(this.selectedImage)" style="color: #dc322f" (click)="setMainImagePosition()">主頁</label>
+          <label class="main-image-icon" *ngIf="main_image_position === uploader.queue.indexOf(this.selectedImage)" style="color: #000">封面</label>
+          <label class="main-image-icon" *ngIf="main_image_position !== uploader.queue.indexOf(this.selectedImage)" style="color: #aaa" (click)="setMainImagePosition()">設成封面</label>
 
           <i class="fa fa-times delete-image-icon" aria-hidden="true" (click)="removeImage()"></i>
 
@@ -172,11 +172,12 @@
         <!-- <input type="file" class="post-function-button" multiple> -->
         <!--<input type="file" class="post-function-button" name="multiple" ng2FileSelect [uploader]="uploader" multiple  />-->
         <!--<div class="post-function-button"><b>選擇檔案</b></div>-->
-        <label class="post-function-button">
-          <b>選擇檔案</b><input type="file" style="display: none;" name="multiple" ng2FileSelect [uploader]="uploader" multiple (change)="addNewImages()">
-        </label>
+        <div class="post-function-button" >
+          <b>選擇檔案</b>
+          <input type="file" class="input-file"  (change)="selectedImage = uploader.queue[0]" ng2FileSelect [uploader]="uploader" multiple>
+        </div>  
 
-        <p class="prompt"><b>Step2. 輸入資訊</b></p>
+        <p class="prompt"><b>才能資訊</b></p>
         <div class="inputblocks">
           <input type="text"
                  name="product-name"

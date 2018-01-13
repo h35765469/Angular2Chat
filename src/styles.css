@@ -131,7 +131,7 @@ html, body{
   overflow-x        : hidden;
   overflow-y        : hidden;
   /*background-color  : #adadad;*/
-  background-color: #bce8f1;
+  background-color: #fff;
   align-items       : center;
   justify-content   : center;
   flex-direction    : column;
@@ -170,36 +170,34 @@ div.container{
 
 /*below for slogan*/
 div.summary{
-  width: 100%;
-  height: 50%;
-  z-index         : -1;
-  /*background-color: #aaaaaa;*/
-  text-align      : center;
-  /*margin-top     : 50px;*/
-  font-family     : "Impact";
-  /*background-image: url(../html/scare.gif);*/
-  background-repeat: no-repeat;
-  /*background-position: center center;*/
-  background-size: 100% auto;
-  margin:0px auto;
+    width: 100%;
+    height: 45%;
+    z-index         : -1;
+    text-align      : center;
+    font-family     : "Impact";
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    margin: 0px auto;
+    padding-top: 35px;
 }
 div.slogan-block{
-  padding-top   : 35px;
+  padding-top   : 30px;
   height:200px;
-  padding-bottom: 35px;
+  padding-bottom: 30px;
   /*color: #000;*/
 }
 .slogan{
-  background: -webkit-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
-  /* For Opera 11.1 to 12.0 */
-  background: -o-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
-  /* For Fx 3.6 to 15 */
-  background: -moz-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
-  /* Standard syntax */
-  background: linear-gradient(to right,red, red,orange,yellow,green,blue,indigo,violet);
-  color:transparent;
-  -webkit-background-clip: text;
-  /*background-clip: text;*/
+    background: -webkit-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
+    /* For Opera 11.1 to 12.0 */
+    background: -o-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
+    /* For Fx 3.6 to 15 */
+    background: -moz-linear-gradient(left,red,red,orange,yellow,green,blue,indigo,violet);
+    /* Standard syntax */
+    background: linear-gradient(to right,red, red,orange,yellow,green,blue,indigo,violet);
+    color:transparent;
+    -webkit-background-clip: text;
+    vertical-align: top;
+    font-size: 45px;
 }
 /*--*/
 
@@ -220,7 +218,7 @@ div.slogan-block{
   margin-bottom      : 25px;
   /*-webkit-transition : width 0.4s ease-in-out;*/
   transition         : width 0.4s ease-in-out;
-  /*margin-top: 350px;*/
+  margin-top: 20px;
 }
 .search-block:focus{
   width  : 350px;
