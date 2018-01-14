@@ -105,7 +105,20 @@ export class OtherDataComponent extends BaseComponent implements OnInit {
         alert(response);
       }else {
         if (!response.error) {
-          this.other_talents = response.message;
+          if (this.other_talents.length !== response.message.length){
+            this.other_talents = response.message;
+            if (this.other_talents.length === 6) {
+              this.more_talents = false;
+            }else {
+              if (this.other_talents.length % 6 === 0) {
+                this.more_talents = true;
+              }else {
+                this.more_talents = false;
+              }
+            }
+          }else {
+
+          }
         }
       }
     });

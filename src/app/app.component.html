@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <!--<a class="logo" routerLink="catalog" >Talent</a>-->
-      <a routerLink="catalog"><img src="../assets/image/main_log.png" style=" max-height: 80px"></a>
+      <a routerLink="catalog"><img src="../assets/image/main_log.png" style=" max-height: 75px"></a>
     </div>
 
     <div class="navbar-brand btn_logined">
@@ -36,15 +36,33 @@
 
 
 
-    <a class="notification_btn" (click)="openNotificationModal(talent_notification_template)" *ngIf="talent_notification_come">
+    <a class="notification_btn" (click)="showModal()" *ngIf="talent_notification_come">
       <a class="chatIcon fa fa-bullhorn">
         <span class="fa fa-comment"></span>
         <span class="num"></span>
       </a>
     </a>
-    <a class="notification_btn" (click)="openNotificationModal(talent_notification_template)" *ngIf="!talent_notification_come">
+    <a class="notification_btn" (click)="showModal()" *ngIf="!talent_notification_come">
       <i class="fa fa-bullhorn" style="color: #ffffff"></i>
     </a>
+
+    <div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Just another modal <br>
+            Click <b>&times;</b>, press <code>Esc</code> or click on backdrop to close modal.
+          </div>
+        </div>
+      </div>
+    </div>
 
     <ng-template #talent_notification_template>
 
@@ -67,7 +85,7 @@
                 <p>{{timeConverter(notification.timestamp)}}</p>
                 <p>{{notification.description}}</p>
               </div>
-              <img class="col-md-2" [src]="urlSafe('http://1.34.63.239:3001/' + notification.type_id[0].main_image)"
+              <img class="col-md-2" [src]="urlSafe('http://localhost:3001/' + notification.type_id[0].main_image)"
                    style="width: auto; height: 90%; margin-top: auto;margin-bottom: auto; padding:0 0 0 0;">
             </div>
 
@@ -78,7 +96,7 @@
                 <p>{{timeConverter(notification.timestamp)}}</p>
                 <p>{{notification.description}}</p>
               </div>
-              <img class="col-md-2" [src]="urlSafe('http://1.34.63.239:3001/' + notification.type_id[0].main_image)"
+              <img class="col-md-2" [src]="urlSafe('http://localhost:3001/' + notification.type_id[0].main_image)"
                    style="width: auto; height: 90%; margin-top: auto;margin-bottom: auto;padding: 0 0 0 0;">
             </div>
 

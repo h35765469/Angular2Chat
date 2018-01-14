@@ -196,7 +196,20 @@ export class TalentPreviewComponent implements OnInit {
   }
   // method to get talents buys
   getTalentsBuys() {
-    this.talent_service.getTalentBuys({talent_id: this.talent_id}, (error, response) => {
+    this.talent_service.getTalentBuys({talent_id: this.talent_id, talent_buy_amount: 6}, (error, response) => {
+      if (error) {
+
+      }else {
+        if (!response.error) {
+          this.talent_buys = response.message;
+        }
+      }
+    });
+  }
+
+  // method to get more talents buys
+  getMoreTalentsBuys() {
+    this.talent_service.getTalentBuys({talent_id: this.talent_id, talent_buy_amount: this.talent_buys.length + 6}, (error, response) => {
       if (error) {
 
       }else {
